@@ -5,8 +5,12 @@ html_content = '''<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>给妈妈的信 - 母亲节快乐</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Ma Shan Zheng';
+            src: local('Ma Shan Zheng'), local('MaShanZheng');
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,12 +23,11 @@ html_content = '''<!DOCTYPE html>
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Noto Serif SC', serif;
+            font-family: 'Noto Serif SC', 'SimSun', 'STSong', serif;
             overflow: hidden;
             position: relative;
         }
 
-        /* 飘落的花瓣 */
         .petal {
             position: absolute;
             width: 20px;
@@ -41,19 +44,14 @@ html_content = '''<!DOCTYPE html>
                 transform: translateY(-100vh) rotate(0deg) translateX(0);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.6;
-            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
             100% {
                 transform: translateY(100vh) rotate(720deg) translateX(100px);
                 opacity: 0;
             }
         }
 
-        /* 信封容器 */
         .envelope-container {
             position: relative;
             width: 340px;
@@ -71,20 +69,16 @@ html_content = '''<!DOCTYPE html>
             pointer-events: none;
         }
 
-        /* 信封主体 */
         .envelope {
             position: absolute;
             width: 100%;
             height: 100%;
             background: linear-gradient(145deg, #fff0f5 0%, #ffe4e1 100%);
             border-radius: 0 0 8px 8px;
-            box-shadow: 
-                0 10px 30px rgba(255, 105, 180, 0.3),
-                0 0 0 1px rgba(255, 182, 193, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3), 0 0 0 1px rgba(255, 182, 193, 0.5);
             overflow: hidden;
         }
 
-        /* 信封底部 */
         .envelope-bottom {
             position: absolute;
             bottom: 0;
@@ -95,7 +89,6 @@ html_content = '''<!DOCTYPE html>
             z-index: 2;
         }
 
-        /* 信封左侧 */
         .envelope-left {
             position: absolute;
             left: 0;
@@ -106,7 +99,6 @@ html_content = '''<!DOCTYPE html>
             z-index: 1;
         }
 
-        /* 信封右侧 */
         .envelope-right {
             position: absolute;
             right: 0;
@@ -117,7 +109,6 @@ html_content = '''<!DOCTYPE html>
             z-index: 1;
         }
 
-        /* 信封翻盖 */
         .envelope-flap {
             position: absolute;
             top: 0;
@@ -136,7 +127,6 @@ html_content = '''<!DOCTYPE html>
             z-index: 0;
         }
 
-        /* 封口装饰 */
         .seal {
             position: absolute;
             top: 45%;
@@ -159,7 +149,6 @@ html_content = '''<!DOCTYPE html>
             opacity: 0;
         }
 
-        /* 提示文字 */
         .hint {
             position: absolute;
             bottom: -45px;
@@ -181,7 +170,6 @@ html_content = '''<!DOCTYPE html>
             opacity: 0;
         }
 
-        /* 信件内容 */
         .letter {
             position: absolute;
             top: 50%;
@@ -230,7 +218,7 @@ html_content = '''<!DOCTYPE html>
         }
 
         .letter-header h2 {
-            font-family: 'Ma Shan Zheng', cursive;
+            font-family: 'Ma Shan Zheng', 'STXingkai', 'KaiTi', cursive;
             font-size: 28px;
             color: #c71585;
             margin-bottom: 5px;
@@ -260,7 +248,7 @@ html_content = '''<!DOCTYPE html>
         }
 
         .letter-footer .signature {
-            font-family: 'Ma Shan Zheng', cursive;
+            font-family: 'Ma Shan Zheng', 'STXingkai', 'KaiTi', cursive;
             font-size: 22px;
             color: #c71585;
         }
@@ -279,7 +267,6 @@ html_content = '''<!DOCTYPE html>
             45% { transform: scale(1.15); }
         }
 
-        /* 装饰花朵 */
         .flower-deco {
             position: absolute;
             font-size: 30px;
@@ -292,7 +279,6 @@ html_content = '''<!DOCTYPE html>
         .flower-deco.bottom-left { bottom: 20px; left: 20px; transform: rotate(20deg); }
         .flower-deco.bottom-right { bottom: 20px; right: 20px; transform: rotate(-20deg); }
 
-        /* 爱心背景 */
         .bg-heart {
             position: absolute;
             font-size: 40px;
@@ -306,7 +292,6 @@ html_content = '''<!DOCTYPE html>
             50% { transform: translateY(-20px) rotate(10deg); }
         }
 
-        /* 响应式 */
         @media (max-width: 480px) {
             .envelope-container {
                 width: 280px;
@@ -327,37 +312,33 @@ html_content = '''<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <!-- 飘落花瓣 -->
     <div id="petals"></div>
 
-    <!-- 背景爱心 -->
-    <div class="bg-heart" style="top: 10%; left: 10%;">❤️</div>
-    <div class="bg-heart" style="top: 20%; right: 15%; animation-delay: 1s;">💖</div>
-    <div class="bg-heart" style="bottom: 15%; left: 20%; animation-delay: 2s;">💗</div>
-    <div class="bg-heart" style="bottom: 25%; right: 10%; animation-delay: 3s;">💕</div>
+    <div class="bg-heart" style="top: 10%; left: 10%;">&#10084;</div>
+    <div class="bg-heart" style="top: 20%; right: 15%; animation-delay: 1s;">&#128150;</div>
+    <div class="bg-heart" style="bottom: 15%; left: 20%; animation-delay: 2s;">&#128151;</div>
+    <div class="bg-heart" style="bottom: 25%; right: 10%; animation-delay: 3s;">&#128149;</div>
 
-    <!-- 信封 -->
     <div class="envelope-container" id="envelope" onclick="openLetter()">
         <div class="envelope">
             <div class="envelope-flap"></div>
             <div class="envelope-left"></div>
             <div class="envelope-right"></div>
             <div class="envelope-bottom"></div>
-            <div class="seal">💌</div>
+            <div class="seal">&#128231;</div>
         </div>
-        <div class="hint">✨ 点击开封 ✨</div>
+        <div class="hint">&#10024; 点击开封 &#10024;</div>
     </div>
 
-    <!-- 信件内容 -->
     <div class="letter" id="letter">
-        <div class="flower-deco top-left">🌸</div>
-        <div class="flower-deco top-right">🌺</div>
-        <div class="flower-deco bottom-left">🌷</div>
-        <div class="flower-deco bottom-right">🌹</div>
+        <div class="flower-deco top-left">&#127800;</div>
+        <div class="flower-deco top-right">&#127804;</div>
+        <div class="flower-deco bottom-left">&#127799;</div>
+        <div class="flower-deco bottom-right">&#127801;</div>
 
         <div class="letter-header">
             <h2>亲爱的妈妈</h2>
-            <div class="date">2026年5月10日 · 母亲节</div>
+            <div class="date">2026年5月10日 &#183; 母亲节</div>
         </div>
 
         <div class="letter-body">
@@ -370,15 +351,14 @@ html_content = '''<!DOCTYPE html>
 
         <div class="letter-footer">
             <div class="signature">永远爱您的孩子</div>
-            <div class="heart">❤️</div>
+            <div class="heart">&#10084;</div>
         </div>
     </div>
 
     <script>
-        // 生成飘落花瓣
         function createPetals() {
             const container = document.getElementById('petals');
-            const petalCount = 15;
+            const petalCount = 12;
             
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
@@ -392,17 +372,13 @@ html_content = '''<!DOCTYPE html>
             }
         }
 
-        // 开封信件
         function openLetter() {
             const envelope = document.getElementById('envelope');
             if (envelope.classList.contains('opened')) return;
             
             envelope.classList.add('opened');
-            
-            // 播放简单的音效（可选，用视觉反馈代替）
             document.body.style.background = 'linear-gradient(135deg, #fff0f5 0%, #ffe4e1 40%, #ffc0cb 100%)';
             
-            // 额外飘落一些花瓣庆祝
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
                     const petal = document.createElement('div');
@@ -426,4 +402,4 @@ html_content = '''<!DOCTYPE html>
 with open('/mnt/agents/output/mothers_day_letter.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("文件已保存")
+print("文件已保存，大小:", len(html_content), "字符")
